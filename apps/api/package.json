@@ -7,7 +7,8 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsup",
     "start": "node dist/server.js",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run --passWithNoTests --exclude '**/*.int.test.ts'",
+    "test:int": "vitest run --no-file-parallelism .int.test.ts",
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {

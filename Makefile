@@ -1,4 +1,4 @@
-.PHONY: up down logs test check prod
+.PHONY: up down logs test check test-int prod
 
 up:
 	docker compose up -d && echo "→ http://localhost:5174"
@@ -12,3 +12,5 @@ check:
 	docker compose run --rm --no-deps install pnpm check
 prod:
 	docker compose -f docker-compose.prod.yml up -d --build && echo "→ http://localhost:8080"
+test-int:
+	docker compose run --rm api pnpm --filter api test:int

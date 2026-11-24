@@ -1,5 +1,7 @@
 # A Missão TS
 
+![Masmorra de A Missão com inventário e controles](docs/screenshot.png)
+
 Jogo de aventura por turnos numa masmorra, com 7 níveis, inimigos, armas e poções. Laboratório do **Use a Cabeça! C#** reescrito em **TypeScript**, com a mesma estrutura do
 [corrida-cachorro-ts](https://github.com/jamangueira7/corrida-cachorro-ts): React + Vite, Fastify, Postgres com
 Kysely, Vitest e tudo subindo com Docker.
@@ -88,3 +90,18 @@ make check                            # ESLint + tsc + Vitest no container
 
 Branches `feature/<nome>`, commits `tipo(escopo): descrição` com até 6 arquivos. Detalhes na skill
 `.claude/skills/lab-ts/SKILL.md`.
+
+## Testes
+
+Tudo roda no Docker, sem Node na máquina. Com o app no ar (`make up`):
+
+```bash
+make check       # ESLint + tsc + unitários (domínio, API com banco falso e telas com Testing Library)
+make test-int    # API contra Postgres de verdade, no banco lab_test (criado sozinho)
+make e2e         # Playwright (Chromium da imagem oficial) jogando no web e na API do compose
+make screenshot  # joga até o nível 3 e regrava docs/screenshot.png
+```
+
+O pre-push roda só o `make check`. Nos testes de tela e no E2E o sorteio do jogo é combinado (`Math.random`
+trocado por valores fixos), então a partida sempre acontece igual. Os testes E2E gravam partidas com nome
+`E2E-...` no ranking e apagam essas linhas no fim.

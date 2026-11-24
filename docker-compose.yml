@@ -1,4 +1,4 @@
-# Desenvolvimento: `docker compose up` sobe banco, API e web com hot reload em http://localhost:5173.
+# Desenvolvimento: `docker compose up` sobe banco, API e web com hot reload em http://localhost:5174.
 x-node: &node
   build: { context: ., dockerfile: docker/dev.Dockerfile }
   image: lab-dev
@@ -30,7 +30,7 @@ services:
     command: pnpm --filter api dev
     environment:
       DATABASE_URL: ${DATABASE_URL:-postgres://lab:lab@db:5432/lab}
-    # A API fica na rede interna; o navegador chega nela pelo proxy /api do Vite (localhost:5173/api).
+    # A API fica na rede interna; o navegador chega nela pelo proxy /api do Vite (localhost:5174/api).
     depends_on:
       install: { condition: service_completed_successfully }
       db: { condition: service_healthy }
@@ -40,7 +40,7 @@ services:
     command: pnpm --filter web dev
     environment:
       API_URL: http://api:3000
-    ports: ['5173:5173']
+    ports: ['5174:5173']
     depends_on:
       install: { condition: service_completed_successfully }
 

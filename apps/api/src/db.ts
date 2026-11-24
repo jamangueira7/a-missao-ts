@@ -1,10 +1,21 @@
-import { Kysely, Migrator, PostgresDialect } from 'kysely';
+import { Kysely, Migrator, PostgresDialect, type ColumnType, type Generated } from 'kysely';
 import pg from 'pg';
 import { migrations } from './migrations/index';
 
+/** Uma partida terminada (tabela `runs`). */
+export interface RunsTable {
+  id: Generated<number>;
+  name: string;
+  level: number;
+  hit_points: number;
+  won: boolean;
+  created_at: ColumnType<Date, never, never>;
+}
+
 /** Tabelas do laboratório: acrescente aqui junto com a migration. */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface Database {}
+export interface Database {
+  runs: RunsTable;
+}
 
 export function createDb(url = process.env.DATABASE_URL ?? 'postgres://lab:lab@localhost:5432/lab') {
   return new Kysely<Database>({

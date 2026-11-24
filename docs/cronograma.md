@@ -170,11 +170,11 @@ Tarefas por semana:
 
 Pronto quando:
 
-- [ ] A tela só conversa com `Game`; nenhum outro objeto do domínio é importado no front
-- [ ] Nenhum campo de estado do domínio é público para escrita
-- [ ] Os 7 níveis jogáveis do início ao fim, com vitória e derrota
-- [ ] Testes cobrem o movimento de cada inimigo e o ataque de cada arma, com aleatório controlado
-- [ ] Ranking persistido no Postgres e exibido ordenado
+- [x] A tela só conversa com `Game`; nenhum outro objeto do domínio é importado no front
+- [x] Nenhum campo de estado do domínio é público para escrita
+- [x] Os 7 níveis jogáveis do início ao fim, com vitória e derrota
+- [x] Testes cobrem o movimento de cada inimigo e o ataque de cada arma, com aleatório controlado
+- [x] Ranking persistido no Postgres e exibido ordenado
 
 ## Laboratório 3 — Invasores (semanas de 01/02 a 15/03)
 

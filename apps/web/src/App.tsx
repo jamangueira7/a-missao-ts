@@ -41,8 +41,7 @@ export function App() {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (!playing || e.ctrlKey || e.metaKey || e.altKey) return;
-      const target = e.target as HTMLElement;
-      if (target.closest('input, textarea, select')) return;
+      if (e.target instanceof HTMLElement && e.target.closest('input, textarea, select')) return;
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
       if (MOVE_KEYS[key]) {
         e.preventDefault();

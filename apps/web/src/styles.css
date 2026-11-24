@@ -601,6 +601,7 @@ input {
 /* ---------- fim de jogo ---------- */
 .overlay {
   position: absolute;
+  z-index: 5;
   inset: 0;
   display: grid;
   place-items: center;

@@ -44,5 +44,21 @@ services:
     depends_on:
       install: { condition: service_completed_successfully }
 
+  # Testes ponta a ponta e print do README (só sobe com o perfil): `make e2e` e `make screenshot`.
+  # Usa o web e a API do próprio compose; o Chromium vem na imagem, nada é instalado no host.
+  e2e:
+    image: mcr.microsoft.com/playwright:v1.49.1-noble
+    profiles: [e2e]
+    user: '1000:1000'
+    working_dir: /app/e2e
+    volumes: ['.:/app']
+    environment:
+      HOME: /tmp
+      E2E_BASE_URL: http://web:5173
+      DATABASE_URL: postgres://lab:lab@db:5432/lab
+      SCREENSHOT: ${SCREENSHOT:-}
+    depends_on: [web, api]
+    command: npx playwright test
+
 volumes:
   db-data:
